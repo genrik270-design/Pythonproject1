@@ -1,0 +1,16 @@
+# Системные файлы Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Окружение Poetry и виртуальные среды
+.venv/
+poetry.lock
+
+# Настройки PyCharm / IntelliJ
+.idea/
+*.iml
+
+# Логи и отчеты линтеров
+.mypy_cache/
+.pytest_cache/
