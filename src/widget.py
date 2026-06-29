@@ -1,5 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
-
+from datetime import datetime
 
 def mask_account_card(input_string: str) -> str:
     """Обрабатывает строку с типом и номером карты/счета.
@@ -28,3 +28,15 @@ def mask_account_card(input_string: str) -> str:
         masked_number = get_mask_card_number(number_str)
 
     return f"{card_type} {masked_number}"
+
+def get_date(date_string: str) -> str:
+    """Преобразует строку с датой из формата ISO в формат ДД.ММ.ГГГГ."""
+    # Получаем только первую часть до символа 'T' (индекс)
+    date_part = date_string.split("T")[0]
+
+    # Переводим строку в объект datetime
+    date_obj = datetime.strptime(date_part, "%Y-%m-%d")
+
+    # Форматируем объект в строку нужного формата
+    return date_obj.strftime("%d.%m.%Y")
+
