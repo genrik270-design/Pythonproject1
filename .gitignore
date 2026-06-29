@@ -1,16 +1,23 @@
-# Системные файлы Python
-__pycache__/
-*.py[cod]
-*$py.class
+# Секретные переменные окружения (токены, пароли)
+.env
+.env.local
 
-# Окружение Poetry и виртуальные среды
+# Виртуальное окружение Python
+venv/
 .venv/
-poetry.lock
+env/
+pythonproject1-py3.14/
 
-# Настройки PyCharm / IntelliJ
+# Кэш Python и скомпилированные файлы
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Файлы настроек редакторов (VS Code, PyCharm/IntelliJ)
+.vscode/
 .idea/
-*.iml
 
-# Логи и отчеты линтеров
-.mypy_cache/
-.pytest_cache/
+# Архивы, которые не должны быть в коде
+*.zip
+*.tar.gz
