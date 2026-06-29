@@ -30,13 +30,13 @@ def mask_account_card(input_string: str) -> str:
     return f"{card_type} {masked_number}"
 
 def get_date(date_string: str) -> str:
-    """Преобразует строку с датой из формата ISO в формат ДД.ММ.ГГГГ."""
-    # Получаем только первую часть до символа 'T' (индекс)
-    date_part = date_string.split("T")[0]
+    """Преобразует строку с датой из формата ISO (2026-06-29T10:14:00) в ДД.ММ.ГГГГ."""
+    # Разделяем строку по символу 'T' и сразу берём левую часть (саму дату)
+    only_date_str = date_string.split("T")[0]
 
-    # Переводим строку в объект datetime
-    date_obj = datetime.strptime(date_part, "%Y-%m-%d")
+    # Конвертируем полученную чистую строку в объект даты
+    date_obj = datetime.strptime(only_date_str, "%Y-%m-%d")
 
-    # Форматируем объект в строку нужного формата
+    # Превращаем в привычный формат ДД.ММ.ГГГГ
     return date_obj.strftime("%d.%m.%Y")
 
