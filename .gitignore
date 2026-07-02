@@ -21,3 +21,4 @@ __pycache__/
 # Архивы, которые не должны быть в коде
 *.zip
 *.tar.gz
+project_with_history.zip
