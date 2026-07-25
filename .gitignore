@@ -22,3 +22,4 @@ __pycache__/
 *.zip
 *.tar.gz
 project_with_history.zip
+src/decorators_typed.py

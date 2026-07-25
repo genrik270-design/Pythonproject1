@@ -2,7 +2,7 @@ import pytest
 from src.decorators import log
 
 
-# Тест логирования в консоль (проверяем, что функция просто работает)
+# 1. Тест логирования в консоль
 def test_log_console():
     @log
     def sample_func(x):
@@ -11,7 +11,7 @@ def test_log_console():
     assert sample_func(5) == 10
 
 
-# Тест логирования в файл (проверяем создание файла и запись текста)
+# 2. Тест логирования успешного выполнения в файл
 def test_log_file(tmp_path):
     log_file = tmp_path / "test.log"
 
@@ -19,26 +19,30 @@ def test_log_file(tmp_path):
     def greet(name):
         return f"Hello, {name}"
 
-    greet("Alice")
+    greet("Bob")
 
     assert log_file.exists()
     content = log_file.read_text(encoding="utf-8")
-    assert "[START] Функция 'greet'" in content
-    assert "[SUCCESS] Функция 'greet'" in content
+
+    # Проверяем новые упрощенные строки
+    assert "Вызов greet..." in content
+    assert "-> greet завершена успешно. Результат: Hello, Bob" in content
 
 
-# Тест логирования ошибки
+# 3. Тест логирования ошибки в файл
 def test_log_error(tmp_path):
     log_file = tmp_path / "error.log"
 
     @log(filename=str(log_file))
-    def division_by_zero():
-        return 1 / 0
+    def divide(a, b):
+        return a / b
 
     with pytest.raises(ZeroDivisionError):
-        division_by_zero()
+        divide(10, 0)
 
+    assert log_file.exists()
     content = log_file.read_text(encoding="utf-8")
-    assert "[ERROR]" in content
-    assert "ZeroDivisionError" in content
-    
+
+    # Проверяем новый формат вывода ошибок
+    assert "Вызов divide..." in content
+    assert "-> ОШИБКА в divide(10, 0): [ZeroDivisionError]" in content
