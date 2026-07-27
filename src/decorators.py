@@ -3,13 +3,26 @@ import sys
 
 
 def log(filename=None):
+    """Внешняя функция.
+
+    Принимает имя файла и решает, как был вызван декоратор (со скобками или без).
+    """
+
     if callable(filename):
         _func = filename
         return log(filename=None)(_func)
 
     def decorator(func):
+        """Декоратор.
+        Принимает целевую функцию `func` и подготавливает для неё обёртку.
+        """
+
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
+            """ Функция-обёртка (wrapper).
+
+            Выполняется каждый раз при вызове декорированной функции.
+            """
             args_str = ", ".join(map(repr, args))
             kwargs_str = ", ".join(f"{k}={v!r}" for k, v in kwargs.items())
             params = ", ".join(filter(None, [args_str, kwargs_str]))
@@ -20,8 +33,6 @@ def log(filename=None):
                         f.write(message + "\n")
                 else:
                     print(message, file=sys.stderr)
-
-            # Лаконичные и чистые сообщения
             write_log(f"Вызов {func.__name__}...")
 
             try:
@@ -35,4 +46,5 @@ def log(filename=None):
                 raise
 
         return wrapper
+
     return decorator
