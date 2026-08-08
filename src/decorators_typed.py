@@ -10,12 +10,14 @@ R = TypeVar("R")
 
 # 1. Перегрузка для случая без скобок: @log
 @overload
-def log(filename: Callable[P, R]) -> Callable[P, R]: ...
+def log(filename: Callable[P, R]) -> Callable[P, R]:
+    ...
 
 
 # 2. Перегрузка для случая с аргументом: @log(filename="app.log")
 @overload
-def log(filename: Optional[str] = None) -> Callable[[Callable[P, R]], Callable[P, R]]: ...
+def log(filename: Optional[str] = None) -> Callable[[Callable[P, R]], Callable[P, R]]:
+    ...
 
 
 # Реализация декоратора

@@ -1,6 +1,7 @@
 from src.masks import get_mask_account, get_mask_card_number
 from datetime import datetime
 
+
 def mask_account_card(input_string: str) -> str:
     """Обрабатывает строку с типом и номером карты/счета.
 
@@ -29,6 +30,7 @@ def mask_account_card(input_string: str) -> str:
 
     return f"{card_type} {masked_number}"
 
+
 def get_date(date_string: str) -> str:
     """Преобразует строку с датой из формата ISO (2026-06-29T10:14:00) в ДД.ММ.ГГГГ."""
     # Разделяем строку по символу 'T' и сразу берём левую часть (саму дату)
@@ -39,4 +41,3 @@ def get_date(date_string: str) -> str:
 
     # Превращаем в привычный формат ДД.ММ.ГГГГ
     return date_obj.strftime("%d.%m.%Y")
-

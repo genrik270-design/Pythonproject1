@@ -1,6 +1,9 @@
 from typing import Iterable, Iterator
 
-def filter_transactions_by_currency(transactions: Iterable[dict], currency: str) -> Iterator[dict]:
+
+def filter_transactions_by_currency(
+    transactions: Iterable[dict], currency: str
+) -> Iterator[dict]:
     """
     Фильтрует транзакции по заданной валюте (например, 'USD', 'RUB').
     Возвращает итератор с транзакциями.
@@ -8,7 +11,10 @@ def filter_transactions_by_currency(transactions: Iterable[dict], currency: str)
     for transaction in transactions:
         # Проверяем структуру. Если вложенность другая, измените этот путь
         try:
-            if transaction.get("operationAmount", {}).get("currency", {}).get("code") == currency:
+            if (
+                transaction.get("operationAmount", {}).get("currency", {}).get("code")
+                == currency
+            ):
                 yield transaction
         except AttributeError:
             continue

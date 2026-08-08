@@ -19,7 +19,7 @@ def log(filename=None):
 
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
-            """ Функция-обёртка (wrapper).
+            """Функция-обёртка (wrapper).
 
             Выполняется каждый раз при вызове декорированной функции.
             """
@@ -33,6 +33,7 @@ def log(filename=None):
                         f.write(message + "\n")
                 else:
                     print(message, file=sys.stderr)
+
             write_log(f"Вызов {func.__name__}...")
 
             try:
