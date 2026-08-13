@@ -1,10 +1,10 @@
 import os
-from typing import List, Dict, Any
+from typing import Any
 
 import pandas as pd
 
 
-def read_csv_financial_operations(file_path: str) -> List[Dict[str, Any]]:
+def read_csv_financial_operations(file_path: str) -> list[dict[str, Any]]:
     """Считывает финансовые операции из CSV-файла и возвращает список словарей."""
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"Файл не найден: {file_path}")
@@ -22,12 +22,12 @@ def read_csv_financial_operations(file_path: str) -> List[Dict[str, Any]]:
 
         df = df.dropna(subset=["date", "amount"])
         return df.to_dict(orient="records")
-    except Exception as e:
+    except (FileNotFoundError, pd.errors.EmptyDataError, ValueError, KeyError) as e:
         print(f"Ошибка при чтении CSV {file_path}: {e}")
         return []
 
 
-def read_excel_financial_operations(file_path: str) -> List[Dict[str, Any]]:
+def read_excel_financial_operations(file_path: str) -> list[dict[str, Any]]:
     """Считывает финансовые операции из Excel-файла (.xlsx/.xls) и возвращает список словарей."""
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"Файл не найден: {file_path}")
@@ -45,6 +45,6 @@ def read_excel_financial_operations(file_path: str) -> List[Dict[str, Any]]:
 
         df = df.dropna(subset=["date", "amount"])
         return df.to_dict(orient="records")
-    except Exception as e:
+    except (FileNotFoundError, pd.errors.EmptyDataError, ValueError, KeyError) as e:
         print(f"Ошибка при чтении Excel {file_path}: {e}")
         return []

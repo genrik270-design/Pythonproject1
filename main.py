@@ -1,6 +1,7 @@
 # Импортируем функцию из папки src из файла utils
 from src.utils import get_financial_transactions
 
+
 def main():
     # Укажите путь к вашему JSON-файлу с транзакциями
     path_to_json = "data/operations.json"
@@ -13,7 +14,7 @@ if __name__ == "__main__":
     main()
 
 
-from src.masks import get_mask_card_number, get_mask_account
+from src.masks import get_mask_account, get_mask_card_number
 
 # Внутри функции main():
 get_mask_card_number("1234567812345678")  # Успех

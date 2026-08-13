@@ -1,8 +1,9 @@
 import pytest
+
 from src.generators import (
+    card_number_generator,
     filter_transactions_by_currency,
     transaction_descriptions,
-    card_number_generator,
 )
 
 

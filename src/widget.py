@@ -1,5 +1,6 @@
+from datetime import UTC, datetime
+
 from src.masks import get_mask_account, get_mask_card_number
-from datetime import datetime
 
 
 def mask_account_card(input_string: str) -> str:
@@ -37,7 +38,7 @@ def get_date(date_string: str) -> str:
     only_date_str = date_string.split("T")[0]
 
     # Конвертируем полученную чистую строку в объект даты
-    date_obj = datetime.strptime(only_date_str, "%Y-%m-%d")
+    date_obj = datetime.strptime(only_date_str, "%Y-%m-%d").replace(tzinfo=UTC)
 
     # Превращаем в привычный формат ДД.ММ.ГГГГ
     return date_obj.strftime("%d.%m.%Y")

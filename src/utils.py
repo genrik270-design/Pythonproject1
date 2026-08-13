@@ -1,7 +1,7 @@
 import json
-import os
 import logging
-from typing import Any, Dict, List
+import os
+from typing import Any
 
 # Настройка логгера
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def get_financial_transactions(file_path: str) -> List[Dict[str, Any]]:
+def get_financial_transactions(file_path: str) -> list[dict[str, Any]]:
     """Читает JSON-файл и возвращает список словарей с транзакциями.
 
     Если файл пустой, содержит не список или не найден, возвращает пустой список."""
