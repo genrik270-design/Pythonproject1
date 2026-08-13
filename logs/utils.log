@@ -1,6 +1,0 @@
-2026-08-12 09:45:40,832 - src.utils - DEBUG - Старт get_financial_transactions. Файл: data/operations.json
-2026-08-12 09:45:40,832 - src.utils - ERROR - Файл не найден: data/operations.json
-2026-08-12 09:45:40,840 - src.utils - DEBUG - Старт get_financial_transactions. Файл: data/operations.json
-2026-08-12 09:45:40,841 - src.utils - ERROR - Данные в data/operations.json не являются списком
-2026-08-12 09:45:40,849 - src.utils - DEBUG - Старт get_financial_transactions. Файл: data/operations.json
-2026-08-12 09:45:40,850 - src.utils - DEBUG - Файл data/operations.json прочитан, найдено 1 элементов

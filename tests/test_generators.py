@@ -1,5 +1,10 @@
 import pytest
-from src.generators import filter_transactions_by_currency, transaction_descriptions, card_number_generator
+from src.generators import (
+    filter_transactions_by_currency,
+    transaction_descriptions,
+    card_number_generator,
+)
+
 
 # Фикстура с тестовыми данными для переиспользования
 @pytest.fixture
@@ -8,25 +13,33 @@ def sample_transactions():
         {
             "id": 1,
             "description": "Перевод организации",
-            "operationAmount": {"amount": "31957.58", "currency": {"name": "руб.", "code": "RUB"}}
+            "operationAmount": {
+                "amount": "31957.58",
+                "currency": {"name": "руб.", "code": "RUB"},
+            },
         },
         {
             "id": 2,
             "description": "Перевод частному лицу",
-            "operationAmount": {"amount": "150.00", "currency": {"name": "USD", "code": "USD"}}
+            "operationAmount": {
+                "amount": "150.00",
+                "currency": {"name": "USD", "code": "USD"},
+            },
         },
         {
             "id": 3,
             "description": "Покупка авиабилетов",
-            "operationAmount": {"amount": "10500.00", "currency": {"name": "руб.", "code": "RUB"}}
+            "operationAmount": {
+                "amount": "10500.00",
+                "currency": {"name": "руб.", "code": "RUB"},
+            },
         },
-        {
-            "id": 4  # Транзакция без описания и суммы для проверки на ошибки
-        }
+        {"id": 4},  # Транзакция без описания и суммы для проверки на ошибки
     ]
 
 
 # --- Тесты для filter_transactions_by_currency ---
+
 
 def test_filter_transactions_by_currency_rub(sample_transactions):
     """Проверка фильтрации транзакций по валюте RUB."""
@@ -51,6 +64,7 @@ def test_filter_transactions_by_currency_empty():
 
 # --- Тесты для transaction_descriptions ---
 
+
 def test_transaction_descriptions(sample_transactions):
     """Проверка извлечения описаний транзакций, включая случай отсутствия ключа."""
     generator = transaction_descriptions(sample_transactions)
@@ -62,6 +76,7 @@ def test_transaction_descriptions(sample_transactions):
 
 
 # --- Тесты для card_number_generator ---
+
 
 def test_card_number_generator_format():
     """Проверка корректности формата генерируемых номеров карт."""
@@ -79,11 +94,13 @@ def test_card_number_generator_range():
 
 
 def test_filter_transactions_by_currency_invalid_data():
-        """Проверка обработки некорректных данных (вызов AttributeError)."""
-        invalid_data = [
-            {"operationAmount": "не словарь, а строка"},  # Вызовет AttributeError при .get()
-            None,  # Тоже вызовет ошибку
-            {"operationAmount": {"currency": None}}  # И это сломает вложенный .get()
-        ]
-        result = list(filter_transactions_by_currency(invalid_data, "USD"))
-        assert result == []
+    """Проверка обработки некорректных данных (вызов AttributeError)."""
+    invalid_data = [
+        {
+            "operationAmount": "не словарь, а строка"
+        },  # Вызовет AttributeError при .get()
+        None,  # Тоже вызовет ошибку
+        {"operationAmount": {"currency": None}},  # И это сломает вложенный .get()
+    ]
+    result = list(filter_transactions_by_currency(invalid_data, "USD"))
+    assert result == []
