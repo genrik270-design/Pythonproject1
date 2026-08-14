@@ -30,4 +30,13 @@ tests/test_read_financial_operations.py
 *.log
 logs/
 
-src/transactions.csv
+data/transactions.csv
+
+# Виртуальное окружение
+.venv/
+venv/
+env/
+ENV/
+
+# Файлы окружения и секреты
+.env

@@ -10,7 +10,7 @@ def read_csv_financial_operations(file_path: str) -> list[dict[str, Any]]:
         raise FileNotFoundError(f"Файл не найден: {file_path}")
 
     try:
-        df = pd.read_csv(file_path, sep=";", encoding="utf-8")
+        df = pd.read_csv(file_path, sep=None, engine="python", encoding="utf-8")
         df.columns = df.columns.str.strip()
 
         if "date" in df.columns:
