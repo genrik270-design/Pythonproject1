@@ -22,7 +22,9 @@ def test_read_csv_success_mock(mock_read_csv, mock_exists):
 
     result = read_csv_financial_operations("fake_path.csv")
 
-    mock_read_csv.assert_called_once_with("fake_path.csv", sep=";", encoding="utf-8")
+    mock_read_csv.assert_called_once_with(
+        "fake_path.csv", sep=None, engine="python", encoding="utf-8"
+    )
     assert isinstance(result, list)
     assert len(result) == 1
     assert result[0]["amount"] == 16210
